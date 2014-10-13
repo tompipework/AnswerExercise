@@ -11,6 +11,7 @@
             <thead>
                 <tr>
                     <th>Name</th>
+                    <th>Palindrome</th>
                     <th>Authorised</th>
                     <th>Enabled</th>
                     <th>Colours</th>
@@ -19,6 +20,7 @@
             <tbody data-bind="foreach: people">
                 <tr>
                     <td><a href="#" data-bind="text: FullName, click: $root.editPerson"></a></td>
+                    <td><span data-bind="css: PalindromeClass"></span></td>
                     <td><span data-bind="css: AuthorisedClass"></span></td>
                     <td><span data-bind="css: EnabledClass"></span></td>
                     <td data-bind="text: ColourString"></td>

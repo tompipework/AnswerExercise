@@ -43,6 +43,15 @@ function Person(value) {
         return yesNo(self.IsEnabled);
     }, self);
 
+    self.PalindromeClass = ko.pureComputed(function () {
+        return yesNo(isPalindrome(value.FirstName + value.LastName));
+    }, self);
+
+    function isPalindrome(word) {
+        word = word.replace(" ", "").toLowerCase();
+        return word == word.split('').reverse().join('');
+    }
+
     self.FullName = ko.pureComputed(function () {
         return self.FirstName + " " + self.LastName;
     }, self);
