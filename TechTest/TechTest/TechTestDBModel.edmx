@@ -81,7 +81,6 @@
           <Property Name="ColourId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IsEnabled" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="People" Relationship="Self.FavouriteColours" FromRole="Colours" ToRole="People" />
         </EntityType>
         <EntityType Name="Person">
           <Key>

@@ -1,7 +1,9 @@
-﻿#people .no {
+﻿#people .no:after {
+    content: "No";
     color: red;
 }
 
-#people .yes {
+#people .yes:after {
+    content: "Yes";
     color: green;
 }

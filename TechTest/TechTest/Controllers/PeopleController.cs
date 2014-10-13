@@ -14,7 +14,7 @@ namespace TechTest.Controllers
         // GET: api/People
         public IQueryable<Person> GetPeople()
         {
-            return _db.People;
+            return _db.People.Include(p => p.Colours).OrderBy(p => p.FirstName);
         }
 
         // GET: api/People/5

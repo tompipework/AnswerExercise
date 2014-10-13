@@ -1,7 +1,7 @@
 ﻿@model dynamic
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "People";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -15,13 +15,18 @@
                 <th>Colours</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody data-bind="foreach: people">
             <tr>
-                <td><a id="1" href="#">Bo Bob</a></td>
-                <td><span class="yes">Yes</span></td>
-                <td><span class="no">No</span></td>
-                <td>Red</td>
+                <td><a id="1" href="#" data-bind="attr: { id: Id }, text: FullName">Bo Bob</a></td>
+                <td><span data-bind="css: AuthorisedClass"></span></td>
+                <td><span data-bind="css: EnabledClass"></span></td>
+                <td data-bind="text: Colours">Red</td>
             </tr>
         </tbody>
     </table>
 </div>
+
+@section Scripts
+{
+    <script src="~/KnockoutModels/PersonList.js"></script>
+}
