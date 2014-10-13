@@ -18,10 +18,10 @@
             </thead>
             <tbody data-bind="foreach: people">
                 <tr>
-                    <td><a href="#" data-bind="attr: { id: Id }, text: FullName, click: $root.editPerson"></a></td>
+                    <td><a href="#" data-bind="text: FullName, click: $root.editPerson"></a></td>
                     <td><span data-bind="css: AuthorisedClass"></span></td>
                     <td><span data-bind="css: EnabledClass"></span></td>
-                    <td data-bind="text: Colours"></td>
+                    <td data-bind="text: ColourString"></td>
                 </tr>
             </tbody>
         </table>
@@ -35,6 +35,8 @@
     <script src="~/KnockoutModels/PersonList.js"></script>
 
     <script>
+        var viewModel;
+
         function TechTestVm() {
             var self = this;
             self.peopleList = ko.observable();
@@ -49,13 +51,14 @@
                 self.peopleList(peopleList);
             };
 
-            self.editPerson = function (person) {
+            self.editPerson = function(person) {
                 self.peopleList(null);
                 self.chosenPerson(person);
 
-                $("label").click(function (event) {
+                $("label").click(function(event) {
                     event.preventDefault();
-                    $(this).find("input").toggle();
+                    var id = $(this).attr("for");
+                    $("#" + id).toggle();
                 });
             };
 
@@ -63,7 +66,8 @@
         }
 
         $(document).ready(function() {
-            ko.applyBindings(new TechTestVm());
+            viewModel = new TechTestVm();
+            ko.applyBindings(viewModel);
         });
     </script>
 }

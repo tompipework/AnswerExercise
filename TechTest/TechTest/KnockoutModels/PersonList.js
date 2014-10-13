@@ -21,17 +21,19 @@ function yesNo(val) {
 function Person(value) {
     var self = this;
 
-    self.Id = value.PersonId;
+    self.PersonId = value.PersonId;
     self.FirstName = value.FirstName;
     self.LastName = value.LastName;
     self.IsAuthorised = value.IsAuthorised;
     self.IsEnabled = value.IsEnabled;
 
     var colours = [];
+    self.ColourIDs = ko.observableArray();
     $.each(value.Colours, function (key, v) {
         colours.push(v.Name);
+        self.ColourIDs.push(v.ColourId + '');
     });
-    self.Colours = ko.observableArray(colours);
+    self.ColourString = colours.join(", ");
 
     self.AuthorisedClass = ko.pureComputed(function() {
         return yesNo(self.IsAuthorised);
@@ -44,4 +46,27 @@ function Person(value) {
     self.FullName = ko.pureComputed(function () {
         return self.FirstName + " " + self.LastName;
     }, self);
+
+    self.cancelChanges = function () {
+        viewModel.showPeopleList();
+    };
+
+    self.saveChanges = function () {
+        var json = ko.toJSON(this);
+
+        delete json.AuthorisedClass;
+        delete json.EnabledClass;
+        delete json.FullName;
+
+        $.ajax({
+            url: '/api/people/' + this.PersonId,
+            type: 'PUT',
+            contentType: "application/json; charset=utf-8",
+            data: json,
+            success: function () {
+                viewModel.showPeopleList();
+            }
+        });
+    };
+
 }

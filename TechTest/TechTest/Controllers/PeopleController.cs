@@ -44,7 +44,23 @@ namespace TechTest.Controllers
                 return BadRequest();
             }
 
-            _db.Entry(person).State = EntityState.Modified;
+            var dbPerson = _db.People.Include(c => c.Colours).Single(p => p.PersonId == person.PersonId);
+
+            // remove colours that are no longer liked
+            foreach (var colour in dbPerson.Colours.ToList().Where(colour => !person.ColourIDs.Contains(colour.ColourId)))
+            {
+                dbPerson.Colours.Remove(colour);
+            }
+
+            // add favourite colours
+            foreach (var colour in person.ColourIDs.Select(colourId => _db.Colours.Find(colourId)).Where(colour => colour != null))
+            {
+                dbPerson.Colours.Add(colour);
+            }
+
+            _db.Entry(dbPerson).CurrentValues.SetValues(person);
+
+            _db.Entry(dbPerson).State = EntityState.Modified;
 
             try
             {

@@ -5,18 +5,16 @@
         <div class="row">
             <div class="col-md-2 col-xs-4">
                 <div class="checkbox pull-right">
-                    <label>
-                        <input type="checkbox" class="pull-right" data-bind="checked: IsAuthorised" /> Authorised
-                    </label>
+                    <label for="isAuthorised">Authorised</label>
+                    <input id="isAuthorised" type="checkbox" class="pull-right" data-bind="checked: IsAuthorised" />
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-2 col-xs-4">
                 <div class="checkbox pull-right">
-                    <label>
-                        <input type="checkbox" class="pull-right" data-bind="checked: IsEnabled" /> Enabled
-                    </label>
+                    <label for="isEnabled">Enabled</label>
+                    <input id="isEnabled" type="checkbox" class="pull-right" data-bind="checked: IsEnabled" />
                 </div>
             </div>
         </div>
@@ -26,27 +24,24 @@
         <div class="row">
             <div class="col-md-2 col-xs-4">
                 <div class="checkbox pull-right">
-                    <label>
-                        <input type="checkbox" class="pull-right" value="Blue" data-bind="checked: Colours" /> Blue
-                    </label>
+                    <label for="blue">Blue</label>
+                    <input id="blue" value="3" type="checkbox" class="pull-right" data-bind="checked: ColourIDs" />
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-2 col-xs-4">
                 <div class="checkbox pull-right">
-                    <label>
-                        <input type="checkbox" class="pull-right" value="Green" data-bind="checked: Colours" /> Green
-                    </label>
+                    <label for="green">Green</label>
+                    <input id="green" value="2" type="checkbox" class="pull-right" data-bind="checked: ColourIDs" />
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-2 col-xs-4">
                 <div class="checkbox pull-right">
-                    <label>
-                        <input type="checkbox" class="pull-right" value="Red" data-bind="checked: Colours" /> Red
-                    </label>
+                    <label>Red</label>
+                    <input id="red" value="1" type="checkbox" class="pull-right" data-bind="checked: ColourIDs" />
                 </div>
             </div>
         </div>
@@ -54,8 +49,8 @@
     <div class="row">
         <div class="col-md-offset-2 col-xs-offset-4">
             <div style="position: relative; left: -28px;">
-                <button type="button" class="btn btn-primary">Save Changes</button>
-                <button type="button" class="btn btn-default">Cancel</button>
+                <button type="button" class="btn btn-primary" data-bind="click: saveChanges">Save Changes</button>
+                <button type="button" class="btn btn-default" data-bind="click: cancelChanges">Cancel</button>
             </div>
         </div>
     </div>

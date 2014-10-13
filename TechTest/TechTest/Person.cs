@@ -25,7 +25,8 @@ namespace TechTest
         public bool IsAuthorised { get; set; }
         public bool IsValid { get; set; }
         public bool IsEnabled { get; set; }
-    
-        public virtual ICollection<Colour> Colours { get; set; }
+
+        public virtual ICollection<Colour> Colours { get; set; }        
+        public virtual ICollection<int> ColourIDs { get; set; }
     }
 }
