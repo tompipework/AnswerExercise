@@ -52,6 +52,11 @@
             self.editPerson = function (person) {
                 self.peopleList(null);
                 self.chosenPerson(person);
+
+                $("label").click(function (event) {
+                    event.preventDefault();
+                    $(this).find("input").toggle();
+                });
             };
 
             self.showPeopleList();
