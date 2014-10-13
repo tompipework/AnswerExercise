@@ -1,0 +1,62 @@
+﻿
+<form role="form" id="editPerson" data-bind="with: chosenPerson">
+    <fieldset>
+        <legend>User Details</legend>
+        <div class="row">
+            <div class="col-md-2 col-xs-4">
+                <div class="checkbox pull-right">
+                    <label>
+                        <input type="checkbox" class="pull-right" data-bind="checked: IsAuthorised" /> Authorised
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 col-xs-4">
+                <div class="checkbox pull-right">
+                    <label>
+                        <input type="checkbox" class="pull-right" data-bind="checked: IsEnabled" /> Enabled
+                    </label>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>Favourite colours</legend>
+        <div class="row">
+            <div class="col-md-2 col-xs-4">
+                <div class="checkbox pull-right">
+                    <label>
+                        <input type="checkbox" class="pull-right" value="Blue" data-bind="checked: Colours" /> Blue
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 col-xs-4">
+                <div class="checkbox pull-right">
+                    <label>
+                        <input type="checkbox" class="pull-right" value="Green" data-bind="checked: Colours" /> Green
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 col-xs-4">
+                <div class="checkbox pull-right">
+                    <label>
+                        <input type="checkbox" class="pull-right" value="Red" data-bind="checked: Colours" /> Red
+                    </label>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <div class="row">
+        <div class="col-md-offset-2 col-xs-offset-4">
+            <div style="position: relative; left: -28px;">
+                <button type="button" class="btn btn-primary">Save Changes</button>
+                <button type="button" class="btn btn-default">Cancel</button>
+            </div>
+        </div>
+    </div>
+</form>

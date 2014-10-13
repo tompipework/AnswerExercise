@@ -1,6 +1,4 @@
-﻿var personListViewModell;
-
-function PersonList() {
+﻿function PersonList() {
     var self = this;
 
     self.people = ko.observableArray([]);
@@ -23,7 +21,7 @@ function yesNo(val) {
 function Person(value) {
     var self = this;
 
-    self.Id = value.id;
+    self.Id = value.PersonId;
     self.FirstName = value.FirstName;
     self.LastName = value.LastName;
     self.IsAuthorised = value.IsAuthorised;
@@ -33,7 +31,7 @@ function Person(value) {
     $.each(value.Colours, function (key, v) {
         colours.push(v.Name);
     });
-    self.Colours = colours.join(", ");
+    self.Colours = ko.observableArray(colours);
 
     self.AuthorisedClass = ko.pureComputed(function() {
         return yesNo(self.IsAuthorised);
@@ -43,15 +41,7 @@ function Person(value) {
         return yesNo(self.IsEnabled);
     }, self);
 
-    self.FullName = ko.computed(function () {
+    self.FullName = ko.pureComputed(function () {
         return self.FirstName + " " + self.LastName;
     }, self);
 }
-
-personListViewModel = new PersonList();
-
-$(document).ready(function () {
-    ko.applyBindings(personListViewModel);
-
-    personListViewModel.getPeople();
-});

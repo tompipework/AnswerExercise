@@ -5,28 +5,60 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="table-responsive">
-    <table class="table" id="people">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Authorised</th>
-                <th>Enabled</th>
-                <th>Colours</th>
-            </tr>
-        </thead>
-        <tbody data-bind="foreach: people">
-            <tr>
-                <td><a id="1" href="#" data-bind="attr: { id: Id }, text: FullName">Bo Bob</a></td>
-                <td><span data-bind="css: AuthorisedClass"></span></td>
-                <td><span data-bind="css: EnabledClass"></span></td>
-                <td data-bind="text: Colours">Red</td>
-            </tr>
-        </tbody>
-    </table>
+<div id="peopleList" data-bind="with: peopleList">
+    <div class="table-responsive">
+        <table class="table" id="people">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Authorised</th>
+                    <th>Enabled</th>
+                    <th>Colours</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: people">
+                <tr>
+                    <td><a href="#" data-bind="attr: { id: Id }, text: FullName, click: $root.editPerson"></a></td>
+                    <td><span data-bind="css: AuthorisedClass"></span></td>
+                    <td><span data-bind="css: EnabledClass"></span></td>
+                    <td data-bind="text: Colours"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
+
+@Html.Partial("Partials/_EditPerson")
 
 @section Scripts
 {
     <script src="~/KnockoutModels/PersonList.js"></script>
+
+    <script>
+        function TechTestVm() {
+            var self = this;
+            self.peopleList = ko.observable();
+            self.chosenPerson = ko.observable();
+
+            self.showPeopleList = function() {
+                self.chosenPerson(null);
+
+                var peopleList = new PersonList();
+                peopleList.getPeople();
+
+                self.peopleList(peopleList);
+            };
+
+            self.editPerson = function (person) {
+                self.peopleList(null);
+                self.chosenPerson(person);
+            };
+
+            self.showPeopleList();
+        }
+
+        $(document).ready(function() {
+            ko.applyBindings(new TechTestVm());
+        });
+    </script>
 }
